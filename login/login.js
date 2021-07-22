@@ -1,7 +1,8 @@
-import { setUser } from '../data/data.js';
-
-// import functions and grab DOM elements
+import { getUser, setUser, USER } from '../data/data.js';
+import users from '../data/users.js';
+ // import functions and grab DOM elements
 const userForm = document.getElementById('formdata');
+setUser(users);
 
 // initialize state
 
@@ -9,14 +10,17 @@ const userForm = document.getElementById('formdata');
   // get user input
   // use user input to update state 
   // update DOM to reflect the new state
-userForm.addEventListener('submit', e => {
+userForm.addEventListener('submit', e =>{
     e.preventDefault();
     const formData = new FormData(userForm);
-    const user = {
-        name: formData.set('name'),
-        password: formData.set('password'),
-        completed: {},
-        todos: {}
-    };
-    setUser(user);
+    getUser(USER);
+    for (let user of users) {
+        if (user.username === formData.get('name')){
+            if (user.password === formData.get('password')){
+                window.location.replace('./todo');
+            } else if (user.password !== formData.get('password')){
+                alert('NOPE - retype password!');
+            }
+        } 
+    }
 });
