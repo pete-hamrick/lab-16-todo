@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/home.css">
+    <link rel="stylesheet" href="../styles/todo.css">
     <title>To Do Page</title>
 </head>
 <body>
     <header>
-        <input id="todo-add" type="text">
-        <button id="add-button">Sad</button>
+        <div class="input-container">
+            <input id="todo-add" type="text" placeholder="Add your to do here">
+            <button id="add-button">Add To Do</button>
+        </div>    
+        <button id="reset-btn">Log Out</button>
     </header>
     <main>
-        <div id="todo-display"></div>
+        <div id="todo-display">
+            <h2>To Do's:</h2>
+        </div>
     </main>
-    <button id="reset-btn">Short</button>
 </body>
 <script type="module" src="./todo.js"></script>
 </html>

@@ -11,12 +11,18 @@ const name = searchParams.get('user');
 const user = findByName(users, name);
 
 for (let item of user.todo){
-   
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('list-item');
+    const checkbox = document.createElement('input');
+    checkbox.id = 'input ' + item;
     const label = document.createElement('label');
-    const radio = document.createElement('input');
-    radio.type = 'checkbox';
-    const span = document.createElement('span');
-    span.textContent = item;
-    label.append(radio, span);
-    display.append(label);
+    label.setAttribute('for', checkbox.id);
+    checkbox.type = 'checkbox';
+    // const span = document.createElement('span');
+    label.textContent = item;
+    // label.append(checkbox, span);
+    itemDiv.append(checkbox, label);
+    display.appendChild(itemDiv);
 }
+
+// label, radio
