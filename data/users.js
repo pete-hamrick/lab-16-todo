@@ -9,7 +9,7 @@ const userPete = {
     username: 'Pete',
     password: 'Pete',
     todocompleted: [],
-    todo: ['Solve world hunger']
+    todo: ['Solve world hunger', 'Eat World Peas']
 };
 const userMili = {
     username: 'Aemilius',
