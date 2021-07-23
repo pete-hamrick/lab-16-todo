@@ -1,4 +1,4 @@
-import { findById, getUser, setUser, USER } from '../data/data.js';
+import { findByName, getUser, setUser, USER } from '../data/data.js';
 import users from '../data/users.js';
  // import functions and grab DOM elements
 const userForm = document.getElementById('form-data');
@@ -13,14 +13,21 @@ setUser(users);
 userForm.addEventListener('submit', e =>{
     e.preventDefault();
     const formData = new FormData(userForm);
+    const name = formData.get('name');
+    const password = formData.get('password');
+    console.log(password);
     getUser(USER);
-    for (let user of users) {
-        if (user.username === formData.get('name')){
-            if (user.password === formData.get('password')){
-                window.location.replace('../todo');
-            } else if (user.password !== formData.get('password')){
-                alert('NOPE - retype password!');
-            }
-        } 
+    const user = findByName(users, name);
+    console.log(users, name, user);
+    if (user.password === password) {
+        window.location.replace(`../todo/?user=${name}`);
+    } else if (user.password !== password) {
+        alert('NOPE - retype password!');
     }
 });
+
+
+    // for (let user of users) {
+    //     if (user.username === formData.get('name')) {
+    //     } 
+    // }

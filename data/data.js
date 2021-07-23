@@ -4,9 +4,9 @@ export function createUser() {
 
 }
 
-export function findById(items, id) {
+export function findByName(items, name) {
     for (const item of items) {
-        if (item.id === id) {
+        if (item.username === name) {
             return item;
         }
     }
