@@ -12,8 +12,18 @@ export function findByName(items, name) {
     }
 }
 
-export function getUser(name) {
+export function getUser(name, password) {
     const userString = localStorage.getItem(name);
+    if (!userString){
+        const newUser = {
+            username: name,
+            password: password,
+            todo: []
+
+        };
+        setUser(newUser);
+        return newUser;
+    }
     return JSON.parse(userString);
 }
 

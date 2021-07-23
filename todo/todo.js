@@ -1,7 +1,6 @@
-import { findByName, getUser, setUser } from '../data/data.js';
+import { getUser, setUser } from '../data/data.js';
 // import users from '../data/users.js';
 
-const users = getUser();
 const searchParams = new URLSearchParams(window.location.search);
 const addButton = document.getElementById('add-button');
 const toDoAdd = document.getElementById('todo-add');
@@ -12,8 +11,9 @@ console.log(logoutButton);
 const display = document.getElementById('todo-display');
 
 const name = searchParams.get('user');
+const user = getUser(name);
 //TODO change this tp new format
-const user = findByName(users, name);
+// const user = findByName(users, name);
 const toDoList = user.todo;
 
 for (let item of toDoList){
@@ -28,6 +28,7 @@ for (let item of toDoList){
     itemDiv.append(checkbox, label);
     display.appendChild(itemDiv);
 }
+console.log(user);
 
 // const newToDo = toDoAdd.value;
 // console.log(newToDo);
@@ -53,3 +54,6 @@ addButton.addEventListener('click', ()=> {
 // thisistoDoList is the list
 // toDoList.push(newToDo);
 // getUser();
+logoutButton.addEventListener('click', ()=>{
+    window.location.replace('../');
+});
