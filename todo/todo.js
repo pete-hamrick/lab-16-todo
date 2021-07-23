@@ -1,16 +1,22 @@
-import { findByName, getUser } from '../data/data.js';
-import users from '../data/users.js';
+import { findByName, getUser, setUser } from '../data/data.js';
+// import users from '../data/users.js';
 
-getUser();
+const users = getUser();
 const searchParams = new URLSearchParams(window.location.search);
+const addButton = document.getElementById('add-button');
+const toDoAdd = document.getElementById('todo-add');
+
+const logoutButton = document.getElementById('reset-btn');
+console.log(logoutButton);
 
 const display = document.getElementById('todo-display');
 
 const name = searchParams.get('user');
-
+//TODO change this tp new format
 const user = findByName(users, name);
+const toDoList = user.todo;
 
-for (let item of user.todo){
+for (let item of toDoList){
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('list-item');
     const checkbox = document.createElement('input');
@@ -18,11 +24,32 @@ for (let item of user.todo){
     const label = document.createElement('label');
     label.setAttribute('for', checkbox.id);
     checkbox.type = 'checkbox';
-    // const span = document.createElement('span');
     label.textContent = item;
-    // label.append(checkbox, span);
     itemDiv.append(checkbox, label);
     display.appendChild(itemDiv);
 }
 
-// label, radio
+// const newToDo = toDoAdd.value;
+// console.log(newToDo);
+addButton.addEventListener('click', ()=> {
+    //taking the input and add it to the array of todos
+    //save that into local storage
+    //get local storage
+    //render the page
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('list-item');
+    const checkbox = document.createElement('input');
+    checkbox.id = 'input ' + toDoAdd.value;
+    const label = document.createElement('label');
+    label.setAttribute('for', checkbox.id);
+    checkbox.type = 'checkbox';
+    label.textContent = toDoAdd.value;
+    itemDiv.append(checkbox, label);
+    display.appendChild(itemDiv);
+    
+    toDoList.push(toDoAdd.value);
+    setUser(user);
+});
+// thisistoDoList is the list
+// toDoList.push(newToDo);
+// getUser();

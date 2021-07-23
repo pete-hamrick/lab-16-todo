@@ -1,8 +1,10 @@
-import { findByName, getUser, setUser, USER } from '../data/data.js';
+import { findByName, getUser, setUser } from '../data/data.js';
 import users from '../data/users.js';
  // import functions and grab DOM elements
 const userForm = document.getElementById('form-data');
-setUser(users);
+for (let user of users){
+    setUser(user);
+}
 
 userForm.addEventListener('submit', e =>{
     e.preventDefault();
@@ -10,7 +12,7 @@ userForm.addEventListener('submit', e =>{
     const name = formData.get('name');
     const password = formData.get('password');
     
-    getUser(USER);
+    getUser(name);
     const user = findByName(users, name);
     
     if (user.password === password) {

@@ -12,14 +12,14 @@ export function findByName(items, name) {
     }
 }
 
-export function getUser() {
-    const userString = localStorage.getItem(USER);
+export function getUser(name) {
+    const userString = localStorage.getItem(name);
     return JSON.parse(userString);
 }
 
 export function setUser(userObject) {
     const userString = JSON.stringify(userObject);
-    localStorage.setItem(USER, userString);
+    localStorage.setItem(userObject.username, userString);
 }
 
 export function addToDo() {
