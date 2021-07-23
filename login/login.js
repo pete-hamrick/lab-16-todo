@@ -4,12 +4,6 @@ import users from '../data/users.js';
 const userForm = document.getElementById('form-data');
 setUser(users);
 
-// initialize state
-
-// set event listeners 
-  // get user input
-  // use user input to update state 
-  // update DOM to reflect the new state
 userForm.addEventListener('submit', e =>{
     e.preventDefault();
     const formData = new FormData(userForm);
@@ -25,9 +19,3 @@ userForm.addEventListener('submit', e =>{
         alert('NOPE - retype password!');
     }
 });
-
-
-    // for (let user of users) {
-    //     if (user.username === formData.get('name')) {
-    //     } 
-    // }
