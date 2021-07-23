@@ -15,10 +15,10 @@ userForm.addEventListener('submit', e =>{
     const formData = new FormData(userForm);
     const name = formData.get('name');
     const password = formData.get('password');
-    console.log(password);
+    
     getUser(USER);
     const user = findByName(users, name);
-    console.log(users, name, user);
+    
     if (user.password === password) {
         window.location.replace(`../todo/?user=${name}`);
     } else if (user.password !== password) {
