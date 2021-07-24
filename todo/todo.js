@@ -6,37 +6,28 @@ const addButton = document.getElementById('add-button');
 const toDoAdd = document.getElementById('todo-add');
 
 const logoutButton = document.getElementById('reset-btn');
-console.log(logoutButton);
 
 const display = document.getElementById('todo-display');
 
 const name = searchParams.get('user');
-const user = getUser(name);
-//TODO change this tp new format
-// const user = findByName(users, name);
+let user = getUser(name);
+
 const toDoList = user.todo;
 
 for (let item of toDoList){
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('list-item');
     const checkbox = document.createElement('input');
-    checkbox.id = 'input ' + item;
+    checkbox.id = 'input ' + item.todo;
     const label = document.createElement('label');
     label.setAttribute('for', checkbox.id);
     checkbox.type = 'checkbox';
-    label.textContent = item;
+    label.textContent = item.todo;
     itemDiv.append(checkbox, label);
     display.appendChild(itemDiv);
 }
-console.log(user);
 
-// const newToDo = toDoAdd.value;
-// console.log(newToDo);
-addButton.addEventListener('click', ()=> {
-    //taking the input and add it to the array of todos
-    //save that into local storage
-    //get local storage
-    //render the page
+addButton.addEventListener('click', () => {
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('list-item');
     const checkbox = document.createElement('input');
@@ -48,12 +39,17 @@ addButton.addEventListener('click', ()=> {
     itemDiv.append(checkbox, label);
     display.appendChild(itemDiv);
     
-    toDoList.push(toDoAdd.value);
+    toDoList.push({ todo: toDoAdd.value, completed: false });
     setUser(user);
 });
-// thisistoDoList is the list
-// toDoList.push(newToDo);
-// getUser();
-logoutButton.addEventListener('click', ()=>{
+
+logoutButton.addEventListener('click', () => {
     window.location.replace('../');
 });
+// const checkBox = document.querySelector('input[name=checkbox]');
+// checkBox.addEventListener('change', e => {
+//     if (e.target.checked) {
+//         toDoList.pop({ todo: toDoAdd.value, completed: false });
+//         toDoList.push({ todo: toDoAdd.value, completed: true });
+//     }
+// });
