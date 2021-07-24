@@ -19,7 +19,6 @@ export function getUser(name, password) {
             username: name,
             password: password,
             todo: []
-
         };
         setUser(newUser);
         return newUser;
